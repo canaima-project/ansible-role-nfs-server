@@ -1,0 +1,39 @@
+---
+  - name : Enable nfs and ssh services
+    firewalld:
+      service: "{{ item }}"
+      permanent: true
+      state: enabled
+    with_items:
+      - ssh
+      - nfs
+
+  - name: Reload firewall
+    shell: firewall-cmd --reload
+
+  - name: Install nfs packages
+    yum:
+      name: ['nfs-utils', 'nfs-utils-lib']
+      state: present
+      update_cache: yes
+
+  - name: Enable and start nfs-server service
+    systemd:
+      name: nfs-server
+      state: started
+      enabled: yes
+    
+  - name: Create shared directory
+    file:
+      path: /var/nfs/
+      owner: nfsnobody
+      group: nfsnobody
+      mode: '0755'
+
+  - name: Update /etc/exports
+    copy:
+      src: "{{ role_path }}/files/exports"
+      dest: /etc/exports
+
+  - name: Make exports changes effective
+    shell: exportfs -a

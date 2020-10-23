@@ -1,0 +1,6 @@
+/var/nfs        192.168.4.86(rw,sync,no_subtree_check)
+/var/nfs        192.168.4.214(rw,sync,no_subtree_check)
+/var/nfs        192.168.4.137(rw,sync,no_subtree_check)
+/var/nfs        192.168.4.92(rw,sync,no_subtree_check)
+/var/nfs        192.168.4.152(rw,sync,no_subtree_check)
+/var/nfs        192.168.4.7(rw,sync,no_subtree_check)
