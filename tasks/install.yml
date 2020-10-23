@@ -13,7 +13,7 @@
 
   - name: Install nfs packages
     yum:
-      name: ['nfs-utils', 'nfs-utils-lib']
+      name: nfs-utils
       state: present
       update_cache: yes
 
@@ -29,6 +29,7 @@
       owner: nfsnobody
       group: nfsnobody
       mode: '0755'
+      state: directory
 
   - name: Update /etc/exports
     copy:
